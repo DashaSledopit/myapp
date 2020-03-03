@@ -1,0 +1,17 @@
+
+<div class="jumbotron">
+  <h1 class="display-5">Home Page</h1>
+  <p class="lead">description</p>
+</div>
+
+<div>
+<% @lab.each do |lab| %>
+<div class="card d-inline-block" style="width: 18rem;">
+  <img class="card-img-top" src="https://www.thetrainingroom.com/getmedia/7ff5a360-83b7-49b7-bc66-01cc1d4d4438/2017-03-21-IT-coursesaspx?width=840&height=439" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= lab.lab_name %></h5>
+    <p class="card-text"><%= lab.description %></p>
+    <%= link_to 'Show more', lab_path(lab), class: "btn btn-primary"%>
+  </div>
+</div>
+<% end %>
