@@ -1,13 +1,15 @@
 source 'https://rubygems.org'
 
 ruby '2.6.3'
-#gem "cancan"
+gem 'nested_form_fields'
+gem 'sidekiq'
 gem "administrate"
 gem 'administrate-field-select', '~> 2.0', require: 'administrate/field/select_basic'
 gem 'devise'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'bundle', '~> 0.0.1'
+gem 'coffee-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use postgresql as the database for Active Record

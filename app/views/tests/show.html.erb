@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Test name:</strong>
+  <%= @test.test_name %>
+</p>
+
+<p>
+  <strong>Lab:</strong>
+  <%= @test.lab_id %>
+</p>
+
+<p>
+  <% @test.questions.each do |question| %>
+    <li><%= question.question_text %></li>
+  <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_path(@test) %> |
+<%= link_to 'Back', tests_path %> 

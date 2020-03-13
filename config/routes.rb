@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
+  
   root 'home#index'
-  #get 'labs/index'
+
   namespace :admin do
       resources :users
 
@@ -10,8 +11,9 @@ Rails.application.routes.draw do
 
   resources :labs, path: 'home/index'
 
-
+  resources :questions
   resources :candidates
+  resources :tests
 
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions" , confirmations: 'confirmations' }
 

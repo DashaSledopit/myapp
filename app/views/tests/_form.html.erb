@@ -1,0 +1,18 @@
+<%= form_for @test do |f| %>
+
+  <div class="field">
+    <%= f.label :test_name %>
+    <%= f.text_field :test_name %>
+  </div>
+
+  <%= f.fields_for :questions do |builder| %>
+    <%= render 'question_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add Question", f, :questions %>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
