@@ -1,21 +1,28 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Test name:</strong>
+<div>
   <%= @test.test_name %>
-</p>
+</div>
 
-<p>
-  <strong>Lab:</strong>
-  <%= @test.lab_id %>
-</p>
+<div>
+  <%= hidden_field :lab_id, value: @test.lab_id   %>
+</div>
 
-<p>
-  <% @test.questions.each do |question| %>
-    <li><%= question.question_text %></li>
-  <% end %>
-</p>
+<div>
+  <ol>
+    <% @test.questions.each do |question| %>
+      <li><%= question.question_text %></li>
+        <% question.answers.each do |answer| %>
+          <%= radio_button_tag("answer[#{question.id}]", answer.id) %>
+          <%= label("answer_".concat(answer.id.to_s).to_sym, answer.answer_text) %><br>
+          <%= radio_button_tag("answer[#{question.id}]", answer.id) %>
+          <%= label("answer_".concat(answer.id.to_s).to_sym, answer.correct_answer) %><br>
+        <% end %>
+    <% end %>
+  </ol>
+</div>
 
-
-<%= link_to 'Edit', edit_test_path(@test) %> |
+ <div><%= submit_tag("Submit", :class => "submit") %></div>
+<%= link_to 'Edit', edit_test_path(@test) %> 
 <%= link_to 'Back', tests_path %> 
+
+

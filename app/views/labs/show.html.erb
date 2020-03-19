@@ -2,5 +2,6 @@
 <h1><%=@lab.description%></h1>
 
 
-<%= link_to 'Enroll', new_candidate_path(@candidate, lab_id: @lab.id), class: "btn btn-primary" %>
+<%= link_to 'Enroll', new_candidate_path(@candidate, lab_id: @lab.id), class: "btn btn-primary" %> |
+<%= link_to 'Edit', edit_lab_path(@lab), class: "btn btn-primary" %> |
 <%= link_to 'Back', :back, class: "btn btn-primary" %>

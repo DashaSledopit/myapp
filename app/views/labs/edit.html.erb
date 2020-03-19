@@ -1,0 +1,7 @@
+<h3>Editing Lab</h3>
+
+<%= render 'form', lab: @lab %>
+
+<%= link_to 'Show', @lab %> |
+<%= link_to 'Delete',  @lab,  method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', labs_path %>

@@ -1,13 +1,11 @@
 class TestsController < ApplicationController
-  before_action :set_test, only: [:show, :edit, :update, :destroy]
-
 
   def index
     @tests = Test.all
   end
 
   def show
-
+    @test = Test.find(params[:id])
   end
 
   def new
@@ -39,20 +37,17 @@ class TestsController < ApplicationController
       end
   end
 
-
   def destroy
-    @test.destroy
+    @test = Test.find(params[:id])
+      if @test.present?
+        @test.destroy
+      end
       redirect_to tests_url, notice: 'Test was successfully destroyed.' 
   end
 
   private
 
-    def set_test
-      @test = Test.find(params[:id])
-    end
-
-
     def test_params
-      params.require(:test).permit(:test_name, :lab_id, questions_attributes: [:id, :question_text, :_destroy, answers_attributes: [ :id, :answer_text]])
+      params.require(:test).permit(:test_name, :lab_id, questions_attributes: [:id, :question_text, :_destroy, answers_attributes: [ :id, :_destroy, :answer_text, :correct_answer]])
     end
 end

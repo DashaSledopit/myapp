@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_122122) do
+ActiveRecord::Schema.define(version: 2020_03_19_122427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,20 @@ ActiveRecord::Schema.define(version: 2020_03_13_122122) do
     t.text "answer_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "correct_answer"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "attempts", force: :cascade do |t|
+    t.bigint "candidate_id", null: false
+    t.bigint "answer_id", null: false
+    t.bigint "question_id", null: false
+    t.string "attempts", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_attempts_on_answer_id"
+    t.index ["candidate_id"], name: "index_attempts_on_candidate_id"
+    t.index ["question_id"], name: "index_attempts_on_question_id"
   end
 
   create_table "candidates", force: :cascade do |t|
@@ -84,6 +97,9 @@ ActiveRecord::Schema.define(version: 2020_03_13_122122) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "attempts", "answers"
+  add_foreign_key "attempts", "candidates"
+  add_foreign_key "attempts", "questions"
   add_foreign_key "questions", "tests"
   add_foreign_key "tests", "labs"
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :attempts
   root 'home#index'
 
   namespace :admin do
@@ -9,8 +10,7 @@ Rails.application.routes.draw do
       root to: "users#index"
     end
 
-  resources :labs, path: 'home/index'
-
+  resources :labs
   resources :questions
   resources :candidates
   resources :tests

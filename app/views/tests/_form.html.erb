@@ -5,10 +5,13 @@
     <%= f.text_field :test_name %>
   </div>
 
-  <%= f.fields_for :questions do |builder| %>
-    <%= render 'question_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Question", f, :questions %>
+  <fieldset>
+      <legend>Tasks:</legend>
+      <%= f.fields_for :questions do |questions_form| %>
+          <%= render "question_fields", f: questions_form %> 
+      <% end %>
+      <%= link_to_add_fields "Add Questions", f, :questions %>
+  </fieldset>
 
 
   <div class="actions">
