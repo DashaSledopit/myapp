@@ -14,15 +14,13 @@
         <% question.answers.each do |answer| %>
           <%= radio_button_tag("answer[#{question.id}]", answer.id) %>
           <%= label("answer_".concat(answer.id.to_s).to_sym, answer.answer_text) %><br>
-          <%= radio_button_tag("answer[#{question.id}]", answer.id) %>
-          <%= label("answer_".concat(answer.id.to_s).to_sym, answer.correct_answer) %><br>
         <% end %>
     <% end %>
   </ol>
 </div>
 
  <div><%= submit_tag("Submit", :class => "submit") %></div>
-<%= link_to 'Edit', edit_test_path(@test) %> 
+<%= link_to 'Edit', edit_test_path(@test) %> |
 <%= link_to 'Back', tests_path %> 
 
 

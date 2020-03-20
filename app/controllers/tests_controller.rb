@@ -19,6 +19,7 @@ class TestsController < ApplicationController
     @test = Test.find_by(id: params[:id])
   end
 
+
   def create
     @test = Test.new(test_params)
       if @test.save
@@ -48,6 +49,6 @@ class TestsController < ApplicationController
   private
 
     def test_params
-      params.require(:test).permit(:test_name, :lab_id, questions_attributes: [:id, :question_text, :_destroy, answers_attributes: [ :id, :_destroy, :answer_text, :correct_answer]])
+      params.require(:test).permit(:test_name, :lab_id, questions_attributes: [:id, :question_text, :_destroy, answers_attributes: [ :id, :_destroy, :answer_text, :correct]])
     end
 end

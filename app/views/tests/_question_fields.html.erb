@@ -1,22 +1,15 @@
 <div class="nested-fields container-fluid m-2 " style="border:1px solid #cecece;">
-<div class="m-3 ">
+  <div class="m-3 ">
     <%= f.hidden_field :_destroy %>
-    <div class= "my-auto">
-        <%= f.label :question %>
-        <%= f.text_field :question_text %>
-        <%= link_to "delete", '#', class: "remove_fields"%>
-    </div>
-    
+    <%= f.label :question %>
+    <%= f.text_field :question_text %>
+    <%= link_to "delete", '#', class: "remove_fields"%>
+
     <div>
       <%= f.fields_for :answers do |builder| %>
         <%= render 'answer_fields', f: builder %>
       <% end %>
       <%= link_to_add_fields "Add answer", f, :answers %>
     </div>
-
-    <div>
-      <%= f.fields_for :answers do |correct_answer| %>
-        <%= render "correct_answer_fields", f: correct_answer %> 
-      <% end %>
-</div>
+  </div>
 </div>

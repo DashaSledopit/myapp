@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :candidates
   resources :tests
 
+  resources :results
+
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions" , confirmations: 'confirmations' }
 
   

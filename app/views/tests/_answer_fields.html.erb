@@ -3,8 +3,10 @@
     <div>
         <%= f.label :answer %>
         <%= f.text_field :answer_text %>
+        <%= f.radio_button :correct, true, :value => true %> correct |
         <%= link_to "delete", '#', class: "remove_fields" %>
     </div>
+
 </div>
 
 
