@@ -13,9 +13,8 @@ class CandidatesController < ApplicationController
   def create 
     @candidate = Candidate.new(candidate_params)
     if @candidate.save 
-      CandidateMailer.with(candidate: @candidate).invitation_email.deliver_now
-      CandidateMailer.with(candidate: @candidate).test_email.deliver_later(wait_until: @candidate.lab.starting_date.advance(days: -1))
-      redirect_to lab_path(id: @candidate.lab_id), notice: "Completed! Please, wait for a test information email!  "
+      CandidateMailer.with(candidate: @candidate).invitation_email.deliver_later(wait_until: @candidate.lab.starting_date.advance(days: -1))
+      redirect_to test_path(id: @candidate.lab_id)
     else
       redirect_to new_candidate_path(@candidate, lab_id: candidate_params[:lab_id]), alert: "Email is taken"
     end

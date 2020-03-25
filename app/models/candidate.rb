@@ -1,6 +1,5 @@
 class Candidate < ApplicationRecord
-  belongs_to :lab
-  has_many :attempts
+  belongs_to :lab  
   validates :email, uniqueness: { case_sensitive: false }
 
 

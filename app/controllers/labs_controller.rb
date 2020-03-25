@@ -27,7 +27,7 @@ class LabsController < ApplicationController
   def update
     @lab = Lab.find_by(id: params[:id])
       if @lab.update_attributes(lab_params)
-        redirect_to @lab, notice: 'Test was successfully updated.'
+        redirect_to @lab, notice: 'Lab was successfully updated.'
       else
         render :edit 
       end

@@ -5,7 +5,8 @@ class TestsController < ApplicationController
   end
 
   def show
-    @test = Test.find(params[:id])
+    @lab = Lab.find_by(id: params[:lab_id])
+    @test = Test.find_by(id: params[:id])
   end
 
   def new
@@ -19,13 +20,13 @@ class TestsController < ApplicationController
     @test = Test.find_by(id: params[:id])
   end
 
-
   def create
+    @lab = Lab.find_by(id: params[:lab_id])
     @test = Test.new(test_params)
       if @test.save
         redirect_to test_path(id: @test.lab_id), notice: 'Test was successfully created.' 
       else
-        redirect_to new_test_path(@test, lab_id: test_params[:lab_id]) 
+        redirect_back(fallback_location: tests_path, alert: "Couldn't find the lab") unless @lab 
       end
   end
 
@@ -44,6 +45,10 @@ class TestsController < ApplicationController
         @test.destroy
       end
       redirect_to tests_url, notice: 'Test was successfully destroyed.' 
+  end
+
+  def outputResult(result)
+    console.log("Result" + result);
   end
 
   private

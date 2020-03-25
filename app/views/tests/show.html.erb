@@ -1,26 +1,39 @@
+<div class="container">
 
-<div>
-  <%= @test.test_name %>
+
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+    <p class="navbar-brand "><%= @test.test_name %></p>
+  </nav>
 </div>
 
 <div>
   <%= hidden_field :lab_id, value: @test.lab_id   %>
 </div>
-
-<div>
+  
+<div class="container d-block p-2">
   <ol>
     <% @test.questions.each do |question| %>
-      <li><%= question.question_text %></li>
+    <div class="container-fluid m-2 d-flex justify-content-start border border-secondary rounded">
+    <div class="m-3  ">
+      <li><%= question.question_text %></li>  
         <% question.answers.each do |answer| %>
-          <%= radio_button_tag("answer[#{question.id}]", answer.id) %>
+          <%= radio_button_tag("answer[#{question.id}]", answer.id)%>
           <%= label("answer_".concat(answer.id.to_s).to_sym, answer.answer_text) %><br>
         <% end %>
+        </div>
+        </div>
     <% end %>
   </ol>
-</div>
 
- <div><%= submit_tag("Submit", :class => "submit") %></div>
+</div>
+  
+<div class="container d-flex justify-content-center">
+    <button type="button"> 
+        Submit
+    </button> 
+  
 <%= link_to 'Edit', edit_test_path(@test) %> |
 <%= link_to 'Back', tests_path %> 
-
-
+</div>
+</div>
