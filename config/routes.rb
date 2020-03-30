@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   resources :labs
   resources :questions
   resources :candidates
-  resources :tests
+  resources :tests do
+    post :approve
+  end
+
+  resources :attempts, only: [:show, :index]
 
 
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions" , confirmations: 'confirmations' }

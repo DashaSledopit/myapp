@@ -39,6 +39,15 @@ class TestsController < ApplicationController
       end
   end
 
+  def approve
+    @test = Test.find_by(id: permitted_params[:test_id])
+    answers = permitted_params[:answer].to_h.map do |question_id, answer_id|
+      @test.questions.find_by(id: question_id.to_i).correct?(answer_id.to_i)
+    end
+    attempt = Attempt.create(correct_answers: answers.count(true), wrong_answers: answers.count(false), candidate: @candidate, test: @test)
+    redirect_to attempt
+  end
+
   def destroy
     @test = Test.find(params[:id])
       if @test.present?
@@ -47,13 +56,14 @@ class TestsController < ApplicationController
       redirect_to tests_url, notice: 'Test was successfully destroyed.' 
   end
 
-  def outputResult(result)
-    console.log("Result" + result);
-  end
+
 
   private
+  def permitted_params
+    params.permit(:test_id, answer: {})
+  end
 
-    def test_params
-      params.require(:test).permit(:test_name, :lab_id, questions_attributes: [:id, :question_text, :_destroy, answers_attributes: [ :id, :_destroy, :answer_text, :correct]])
-    end
+  def test_params
+    params.require(:test).permit(:test_name, :lab_id, questions_attributes: [:id, :question_text, :_destroy, answers_attributes: [ :id, :_destroy, :answer_text, :correct]])
+  end
 end

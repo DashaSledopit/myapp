@@ -10,7 +10,8 @@
 <div>
   <%= hidden_field :lab_id, value: @test.lab_id   %>
 </div>
-  
+
+<%= form_tag(test_approve_path(test_id: @test.id)) do %>
 <div class="container d-block p-2">
   <ol>
     <% @test.questions.each do |question| %>
@@ -29,11 +30,9 @@
 </div>
   
 <div class="container d-flex justify-content-center">
-    <button type="button"> 
-        Submit
-    </button> 
-  
+<%= submit_tag('Submit') %>
 <%= link_to 'Edit', edit_test_path(@test) %> |
 <%= link_to 'Back', tests_path %> 
 </div>
 </div>
+<% end %>
