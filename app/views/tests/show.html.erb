@@ -7,11 +7,12 @@
   </nav>
 </div>
 
+
 <div>
   <%= hidden_field :lab_id, value: @test.lab_id   %>
 </div>
 
-<%= form_tag(test_approve_path(test_id: @test.id)) do %>
+<%= form_tag(test_approve_path(test_id: @test.id, candidate_id: @candidate.id)) do %>
 <div class="container d-block p-2">
   <ol>
     <% @test.questions.each do |question| %>

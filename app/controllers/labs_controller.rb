@@ -4,7 +4,7 @@ class LabsController < ApplicationController
   end
 
   def show
-    @lab = Lab.find(params[:id])
+   @lab = Lab.find(params[:id])
   end
 
   def new

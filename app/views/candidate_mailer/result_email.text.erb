@@ -1,0 +1,8 @@
+Welcome, <%= @candidate.first_name %>
+===============================================
+
+We are glad to see you at example.com.
+
+You've answered <%@candidate.attempts.each do |a|%> <%= a.correct_answers%> <%end%> questions correctly out of <%= @candidate.lab.test.questions.count%>.
+
+Thanks for joining and have a great day!

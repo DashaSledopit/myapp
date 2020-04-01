@@ -5,8 +5,9 @@ class TestsController < ApplicationController
   end
 
   def show
-    @lab = Lab.find_by(id: params[:lab_id])
     @test = Test.find_by(id: params[:id])
+    @candidate = Candidate.find_by(email: params[:candidate_email])
+    redirect_back(fallback_location: root_path, alert: "You're not the candidate") unless @candidate
   end
 
   def new
@@ -41,11 +42,13 @@ class TestsController < ApplicationController
 
   def approve
     @test = Test.find_by(id: permitted_params[:test_id])
+    @candidate = Candidate.find_by(id: permitted_params[:candidate_id])
     answers = permitted_params[:answer].to_h.map do |question_id, answer_id|
       @test.questions.find_by(id: question_id.to_i).correct?(answer_id.to_i)
     end
     attempt = Attempt.create(correct_answers: answers.count(true), wrong_answers: answers.count(false), candidate: @candidate, test: @test)
-    redirect_to attempt
+    CandidateMailer.with(candidate: @candidate).result_email.deliver_now
+    redirect_to test_path(id: @candidate.lab_id, candidate_email: @candidate.email), notice: 'Great! Wait for an email, please'
   end
 
   def destroy
@@ -60,7 +63,7 @@ class TestsController < ApplicationController
 
   private
   def permitted_params
-    params.permit(:test_id, answer: {})
+    params.permit(:candidate_id, :test_id, answer: {})
   end
 
   def test_params

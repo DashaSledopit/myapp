@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/nastja/Desktop/myapp-master/app/views/tests/show.html.erb @ line 17 #<Class:0x00007f75f49c9138>#_app_views_tests_show_html_erb___3348378607544216028_46952651952540:
+
+    [1;34m12[0m: <div>
+    [1;34m13[0m:   <%= hidden_field :lab_id, value: @test.lab_id   %>
+    [1;34m14[0m: </div>
+    [1;34m15[0m: 
+    [1;34m16[0m: 
+ => [1;34m17[0m: <%= binding.pry  %>
+    [1;34m18[0m: <div>
+    [1;34m19[0m:   <%= hidden_field :candidate_id, value: @test.candidate_id   %>
+    [1;34m20[0m: </div>
+    [1;34m21[0m: 
+    [1;34m22[0m: <%= form_tag(test_approve_path(test_id: @test.id)) do %>
+
